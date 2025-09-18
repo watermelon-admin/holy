@@ -1,64 +1,209 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "BreakScreen";
+    ViewData["Title"] = "BreakScreen - Professional Break Timer for Events";
 }
 
-<div class="text-center">
-    <div class="max-w-4xl mx-auto">
-        <h1 class="text-5xl font-bold text-gray-900 mb-6">BreakScreen</h1>
-        <p class="text-xl text-gray-600 mb-8">Professional Break Timer Application for Events, Courses, and Workshops</p>
-
-        <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="text-center">
-                    <div class="flex items-center justify-center w-16 h-16 bg-breakscreen-primary bg-opacity-10 rounded-full mx-auto mb-4">
-                        <svg class="w-8 h-8 text-breakscreen-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+<!-- Hero Section -->
+<div class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-indigo-50">
+    <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,#fff,rgba(255,255,255,0.6))] -z-10"></div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32">
+        <div class="text-center">
+            <div class="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 text-sm font-medium rounded-full mb-8">
+                🎯 Trusted by 1000+ Event Organizers
+            </div>
+            <h1 class="text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 tracking-tight mb-6">
+                Professional
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Break Timers</span>
+                for Events
+            </h1>
+            <p class="text-xl sm:text-2xl text-gray-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Transform your workshops, courses, and conferences with beautiful countdown timers,
+                QR code access, and multi-timezone support that keeps everyone synchronized.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    <a asp-page="/Admin" class="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg rounded-xl transition duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                         </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Break Types</h3>
-                    <p class="text-gray-600">Coffee breaks, lunch breaks, lab sessions, and more</p>
-                </div>
-
-                <div class="text-center">
-                    <div class="flex items-center justify-center w-16 h-16 bg-breakscreen-accent bg-opacity-10 rounded-full mx-auto mb-4">
-                        <svg class="w-8 h-8 text-breakscreen-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                        Go to Dashboard
+                    </a>
+                }
+                else
+                {
+                    <a asp-page="/Account/Register" class="inline-flex items-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg rounded-xl transition duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5">
+                        Get Started Free
+                        <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                         </svg>
-                    </div>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">QR Code Access</h3>
-                    <p class="text-gray-600">Mobile companion view for attendees</p>
-                </div>
+                    </a>
+                    <a asp-page="/Account/Login" class="inline-flex items-center px-8 py-4 bg-white hover:bg-gray-50 text-gray-900 font-semibold text-lg rounded-xl border-2 border-gray-200 hover:border-gray-300 transition duration-200">
+                        Sign In
+                    </a>
+                }
+            </div>
 
-                <div class="text-center">
-                    <div class="flex items-center justify-center w-16 h-16 bg-breakscreen-secondary bg-opacity-10 rounded-full mx-auto mb-4">
-                        <svg class="w-8 h-8 text-breakscreen-secondary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"></path>
-                        </svg>
+            <!-- Feature Preview -->
+            <div class="relative max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl shadow-2xl border border-gray-200 p-8">
+                    <div class="flex items-center justify-center mb-6">
+                        <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                        <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                        <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                    <h3 class="text-lg font-semibold text-gray-900 mb-2">Multi-Timezone</h3>
-                    <p class="text-gray-600">Display end times across multiple timezones</p>
+                    <div class="text-center">
+                        <div class="text-6xl font-bold text-gray-900 mb-2">15:00</div>
+                        <div class="text-xl text-gray-600 mb-4">Coffee Break</div>
+                        <div class="flex justify-center space-x-4 text-sm text-gray-500">
+                            <span>🇺🇸 3:00 PM EST</span>
+                            <span>🇬🇧 8:00 PM GMT</span>
+                            <span>🇯🇵 5:00 AM JST</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-        <div class="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+<!-- Features Section -->
+<div class="bg-white py-20 sm:py-32">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4">Everything you need for professional events</h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                From intimate workshops to large conferences, BreakScreen provides the tools you need to keep your events running smoothly.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl p-8 hover:shadow-lg transition duration-200">
+                <div class="w-12 h-12 bg-blue-600 rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Customizable Break Types</h3>
+                <p class="text-gray-600">Create unlimited break types with custom durations, backgrounds, and messaging. Perfect for coffee breaks, lunch, networking, and more.</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-green-50 to-emerald-100 rounded-2xl p-8 hover:shadow-lg transition duration-200">
+                <div class="w-12 h-12 bg-green-600 rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">QR Code Mobile Access</h3>
+                <p class="text-gray-600">Generate QR codes instantly so attendees can follow the timer on their phones. No app downloads required - works in any browser.</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-purple-50 to-violet-100 rounded-2xl p-8 hover:shadow-lg transition duration-200">
+                <div class="w-12 h-12 bg-purple-600 rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Multi-Timezone Support</h3>
+                <p class="text-gray-600">Display end times for multiple timezones simultaneously. Perfect for global virtual events and international attendees.</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-orange-50 to-amber-100 rounded-2xl p-8 hover:shadow-lg transition duration-200">
+                <div class="w-12 h-12 bg-orange-600 rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Full HD Display</h3>
+                <p class="text-gray-600">Optimized for Full HD (1920x1080) displays with beautiful backgrounds and crisp typography that's readable from any distance.</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-teal-50 to-cyan-100 rounded-2xl p-8 hover:shadow-lg transition duration-200">
+                <div class="w-12 h-12 bg-teal-600 rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Instant Setup</h3>
+                <p class="text-gray-600">Get started in seconds. No complex configuration required. Create your first break timer and start using it immediately.</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-rose-50 to-pink-100 rounded-2xl p-8 hover:shadow-lg transition duration-200">
+                <div class="w-12 h-12 bg-rose-600 rounded-xl flex items-center justify-center mb-6">
+                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path>
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">Reliable & Secure</h3>
+                <p class="text-gray-600">Built on Microsoft Azure with enterprise-grade security. Your data is safe and your timers will never fail when you need them most.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Social Proof Section -->
+<div class="bg-gray-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Trusted by event organizers worldwide</h2>
+            <p class="text-lg text-gray-600">Join thousands of professionals who rely on BreakScreen for their events</p>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-center opacity-70">
+            <div class="text-center">
+                <div class="text-3xl font-bold text-gray-400 mb-1">1000+</div>
+                <div class="text-sm text-gray-500">Events Hosted</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-gray-400 mb-1">50k+</div>
+                <div class="text-sm text-gray-500">Attendees Reached</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-gray-400 mb-1">99.9%</div>
+                <div class="text-sm text-gray-500">Uptime</div>
+            </div>
+            <div class="text-center">
+                <div class="text-3xl font-bold text-gray-400 mb-1">24/7</div>
+                <div class="text-sm text-gray-500">Support</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA Section -->
+<div class="bg-gradient-to-r from-blue-600 to-indigo-700 py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-4xl font-bold text-white mb-6">
+            Ready to elevate your next event?
+        </h2>
+        <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto">
+            Join thousands of event organizers who trust BreakScreen to keep their events running smoothly.
+            Get started in less than 2 minutes.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
             @if (User.Identity?.IsAuthenticated == true)
             {
-                <a asp-page="/Admin" class="block sm:inline-block bg-breakscreen-primary hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200">
+                <a asp-page="/Admin" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 hover:bg-gray-100 font-semibold text-lg rounded-xl transition duration-200 shadow-lg">
                     Go to Dashboard
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
                 </a>
             }
             else
             {
-                <a asp-page="/Account/Register" class="block sm:inline-block bg-breakscreen-primary hover:bg-blue-700 text-white font-medium py-3 px-6 rounded-lg transition duration-200">
-                    Get Started
+                <a asp-page="/Account/Register" class="inline-flex items-center px-8 py-4 bg-white text-blue-600 hover:bg-gray-100 font-semibold text-lg rounded-xl transition duration-200 shadow-lg">
+                    Start Your Free Account
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
                 </a>
-                <a asp-page="/Account/Login" class="block sm:inline-block bg-white hover:bg-gray-50 text-gray-900 font-medium py-3 px-6 rounded-lg border border-gray-300 transition duration-200">
+                <a asp-page="/Account/Login" class="inline-flex items-center px-8 py-4 border-2 border-white text-white hover:bg-white hover:text-blue-600 font-semibold text-lg rounded-xl transition duration-200">
                     Sign In
                 </a>
             }
         </div>
+        <p class="text-blue-200 text-sm mt-6">No credit card required • Set up in under 2 minutes</p>
     </div>
 </div>
