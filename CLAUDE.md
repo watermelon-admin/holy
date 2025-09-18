@@ -52,13 +52,24 @@ BreakScreen helps instructors manage and display break timers during events. Key
 
 ## Development Workflow
 
-### GitHub Flow
+### GitHub Flow with Issue Tracking
 Follow GitHub Flow for all development:
-1. Create a feature branch from `main` for each new feature or fix
-2. Make commits to the feature branch
-3. Open a Pull Request when ready for review
-4. After review and approval, merge to `main`
-5. Deploy from `main` branch
+1. Create a GitHub issue for each feature, bug, or task
+2. Create a feature branch from `main` named with the issue number and description (e.g., `issue-123-add-timer-component`)
+3. Link commits to the issue using `#123` in commit messages
+4. Make commits to the feature branch referencing the issue
+5. Open a Pull Request linked to the issue when ready for review
+6. Reference the issue in PR title and description (e.g., "Fixes #123: Add timer component")
+7. After review and approval, merge to `main`
+8. The issue will automatically close when the PR is merged (if using "Fixes #123" syntax)
+9. Deploy from `main` branch
+
+### Branch Naming Convention
+- Format: `issue-{number}-{brief-description}`
+- Examples:
+  - `issue-42-add-break-types`
+  - `issue-101-fix-timer-bug`
+  - `issue-88-azure-tables-setup`
 
 ### Development Commands
 
