@@ -17,9 +17,13 @@ BreakScreen helps instructors manage and display break timers during events. Key
 ## Technology Stack
 
 ### Core Technologies
-- **IDE**: Visual Studio Core
+- **IDE**: Visual Studio Code
 - **Framework**: ASP.NET Core 9 Web App with Razor Pages (no MVC)
 - **Client-side**: TypeScript
+- **Styling**: TailwindCSS (latest version)
+  - Utility-first CSS framework for rapid UI development
+  - Documentation: https://tailwindcss.com/docs
+  - Build process integrated with ASP.NET Core asset pipeline
 - **Authentication**: ASP.NET Core Identity with Azure Tables via ElCamino.AspNetCore.Identity.AzureTable
   - Documentation: https://elcamino.cloud/projects/docs/identityazuretable/gettingstarted.html
 - **Data Storage**: Azure Tables
@@ -106,6 +110,13 @@ dotnet test
 
 # Watch for changes during development
 dotnet watch run
+
+# TailwindCSS Development (when build process is configured)
+# Build CSS for development
+npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/output.css --watch
+
+# Build CSS for production (with purging)
+npx tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/output.css --minify
 ```
 
 ## Azure Tables Configuration
@@ -113,6 +124,27 @@ dotnet watch run
 The application uses Azure Tables for:
 - ASP.NET Core Identity storage (users, roles, claims)
 - Application data (break types, settings, timezone configurations)
+
+## UI/Styling Guidelines
+
+### TailwindCSS Best Practices
+- Use utility classes for styling (avoid custom CSS when possible)
+- Leverage Tailwind's responsive prefixes (sm:, md:, lg:, xl:, 2xl:)
+- Use Tailwind's color palette and spacing scale for consistency
+- Configure custom colors and fonts in tailwind.config.js for BreakScreen branding
+- Use @apply directive sparingly for component-level abstractions only
+
+### Component Design Principles
+- **Mobile-first**: Design for mobile, then enhance for larger screens
+- **Accessibility**: Use proper contrast ratios and ARIA labels
+- **Performance**: Purge unused CSS in production builds
+- **Consistency**: Use design tokens defined in Tailwind configuration
+
+### Break Screen Specific Requirements
+- Full HD optimization (1920x1080) for main timer displays
+- High contrast for readability during presentations
+- Large, clear typography for countdown timers
+- QR codes must be easily scannable from audience seating
 
 ## Notes
 
