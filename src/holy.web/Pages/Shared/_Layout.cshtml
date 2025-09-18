@@ -5,69 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - holy.web</title>
     <script type="importmap"></script>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'breakscreen': {
+                            'primary': '#2563eb',
+                            'secondary': '#64748b',
+                            'accent': '#10b981'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/holy.web.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="min-h-screen flex flex-col bg-gray-50">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">BreakScreen</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin">Admin</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <ul class="navbar-nav">
+        <nav class="bg-white border-b border-gray-200 shadow-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between items-center h-16">
+                    <div class="flex items-center">
+                        <a asp-area="" asp-page="/Index" class="text-xl font-bold text-breakscreen-primary">BreakScreen</a>
+                        <div class="hidden md:block ml-10">
+                            <div class="flex items-baseline space-x-4">
+                                <a asp-area="" asp-page="/Index" class="text-gray-900 hover:text-breakscreen-primary px-3 py-2 rounded-md text-sm font-medium transition duration-200">Home</a>
+                                <a asp-area="" asp-page="/Admin" class="text-gray-900 hover:text-breakscreen-primary px-3 py-2 rounded-md text-sm font-medium transition duration-200">Admin</a>
+                                <a asp-area="" asp-page="/Privacy" class="text-gray-900 hover:text-breakscreen-primary px-3 py-2 rounded-md text-sm font-medium transition duration-200">Privacy</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="flex items-center space-x-4">
+                            @if (User.Identity?.IsAuthenticated == true)
+                            {
+                                <span class="text-breakscreen-secondary text-sm">Hello, @User.Identity.Name!</span>
+                                <a asp-page="/Account/Logout" class="bg-red-600 hover:bg-red-700 text-white px-3 py-2 rounded-md text-sm font-medium transition duration-200">Logout</a>
+                            }
+                            else
+                            {
+                                <a asp-page="/Account/Login" class="text-gray-900 hover:text-breakscreen-primary px-3 py-2 rounded-md text-sm font-medium transition duration-200">Login</a>
+                                <a asp-page="/Account/Register" class="bg-breakscreen-primary hover:bg-blue-700 text-white px-3 py-2 rounded-md text-sm font-medium transition duration-200">Register</a>
+                            }
+                        </div>
+                    </div>
+                    <div class="md:hidden">
+                        <button type="button" class="mobile-menu-button inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-breakscreen-primary" aria-controls="mobile-menu" aria-expanded="false">
+                            <span class="sr-only">Open main menu</span>
+                            <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div class="mobile-menu hidden md:hidden">
+                    <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3 border-t border-gray-200">
+                        <a asp-area="" asp-page="/Index" class="text-gray-900 hover:text-breakscreen-primary block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                        <a asp-area="" asp-page="/Admin" class="text-gray-900 hover:text-breakscreen-primary block px-3 py-2 rounded-md text-base font-medium">Admin</a>
+                        <a asp-area="" asp-page="/Privacy" class="text-gray-900 hover:text-breakscreen-primary block px-3 py-2 rounded-md text-base font-medium">Privacy</a>
                         @if (User.Identity?.IsAuthenticated == true)
                         {
-                            <li class="nav-item">
-                                <span class="navbar-text me-3">Hello, @User.Identity.Name!</span>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Account/Logout">Logout</a>
-                            </li>
+                            <div class="pt-4 pb-3 border-t border-gray-200">
+                                <div class="px-3 py-2 text-breakscreen-secondary text-sm">Hello, @User.Identity.Name!</div>
+                                <a asp-page="/Account/Logout" class="text-red-600 hover:text-red-700 block px-3 py-2 rounded-md text-base font-medium">Logout</a>
+                            </div>
                         }
                         else
                         {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Account/Login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-page="/Account/Register">Register</a>
-                            </li>
+                            <div class="pt-4 pb-3 border-t border-gray-200">
+                                <a asp-page="/Account/Login" class="text-gray-900 hover:text-breakscreen-primary block px-3 py-2 rounded-md text-base font-medium">Login</a>
+                                <a asp-page="/Account/Register" class="bg-breakscreen-primary hover:bg-blue-700 text-white block px-3 py-2 rounded-md text-base font-medium">Register</a>
+                            </div>
                         }
-                    </ul>
+                    </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+    <main class="flex-1">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
             @RenderBody()
-        </main>
-    </div>
+        </div>
+    </main>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2025 - BreakScreen - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <footer class="border-t border-gray-200 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <p class="text-center text-sm text-gray-600">
+                &copy; 2025 - BreakScreen - <a asp-area="" asp-page="/Privacy" class="text-breakscreen-primary hover:text-blue-700">Privacy</a>
+            </p>
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Mobile menu toggle functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('.mobile-menu-button');
+            const mobileMenu = document.querySelector('.mobile-menu');
+
+            if (mobileMenuButton && mobileMenu) {
+                mobileMenuButton.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+    </script>
     <script src="~/js/site.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
