@@ -22,7 +22,8 @@
       "Bash(dotnet remove package:*)",
       "Bash(azurite:*)",
       "Bash(del:*)",
-      "WebFetch(domain:raw.githubusercontent.com)"
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh issue:*)"
     ],
     "deny": [],
     "ask": []

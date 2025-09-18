@@ -56,13 +56,34 @@ BreakScreen helps instructors manage and display break timers during events. Key
 Follow GitHub Flow for all development:
 1. Create a GitHub issue for each feature, bug, or task
 2. Create a feature branch from `main` named with the issue number and description (e.g., `issue-123-add-timer-component`)
-3. Link commits to the issue using `#123` in commit messages
-4. Make commits to the feature branch referencing the issue
+3. **MANDATORY**: Every commit MUST link to the relevant issue using `#123` in commit messages
+4. **MANDATORY**: Every commit MUST include "Closes #123", "Fixes #123", or "Resolves #123" to automatically close the issue
 5. Open a Pull Request linked to the issue when ready for review
 6. Reference the issue in PR title and description (e.g., "Fixes #123: Add timer component")
 7. After review and approval, merge to `main`
-8. The issue will automatically close when the PR is merged (if using "Fixes #123" syntax)
+8. The issue will automatically close when the PR is merged due to the commit message linking
 9. Deploy from `main` branch
+
+### Commit Message Requirements
+**CRITICAL**: Every commit must reference an issue. Format:
+```
+Brief description of changes
+
+- Detailed bullet points of what was implemented
+- Include technical details and rationale
+
+Closes #123
+
+🤖 Generated with [Claude Code](https://claude.ai/code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>
+```
+
+**Example commit messages:**
+- ✅ `Add timer component with countdown functionality\n\nCloses #123`
+- ✅ `Fix timezone calculation bug in break display\n\nResolves #45`
+- ❌ `Update timer component` (missing issue reference)
+- ❌ `Various bug fixes` (missing issue reference)
 
 ### Branch Naming Convention
 - Format: `issue-{number}-{brief-description}`
