@@ -6,4 +6,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ElCamino.AspNetCore.Identity.AzureTable" Version="9.0.5" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="9.0.9" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="9.0.0" />
+  </ItemGroup>
+
 </Project>
