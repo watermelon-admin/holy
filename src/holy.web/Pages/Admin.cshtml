@@ -1,0 +1,61 @@
+@page
+@model AdminModel
+@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Admin Dashboard</h1>
+    <p>This is a protected page that requires authentication.</p>
+
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <div class="alert alert-success">
+            <h4>Welcome, @User.Identity.Name!</h4>
+            <p>You are successfully authenticated and can access this protected area.</p>
+        </div>
+
+        <div class="mt-4">
+            <h3>Break Management</h3>
+            <p>Here you would manage break types, durations, and settings for BreakScreen.</p>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Break Types</h5>
+                            <p class="card-text">Manage different types of breaks (Coffee, Lunch, Lab, etc.)</p>
+                            <button class="btn btn-primary" disabled>Manage Break Types</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Time Zones</h5>
+                            <p class="card-text">Configure time zones for break end times</p>
+                            <button class="btn btn-primary" disabled>Configure Time Zones</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Settings</h5>
+                            <p class="card-text">General application settings and preferences</p>
+                            <button class="btn btn-primary" disabled>Manage Settings</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            <h4>Access Denied</h4>
+            <p>You must be logged in to access this page.</p>
+            <a href="/Identity/Account/Login" class="btn btn-primary">Login</a>
+        </div>
+    }
+</div>
